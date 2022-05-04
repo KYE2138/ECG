@@ -15,7 +15,7 @@ input_data = test_x[r:r+1]
 input_data = np.reshape(np.float32(input_data),(1,input_data.shape[0],input_data.shape[1]))
 
 # load tflite model to interpreter
-model_path = '.tflite'
+model_path = '2022_05_04_16_10_04.tflite'
 interpreter = Interpreter(model_path)
 interpreter.allocate_tensors()  # Needed before execution!
 input_details = interpreter.get_input_details()  # Model has single input.
