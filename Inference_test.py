@@ -25,6 +25,7 @@ print(input_details,'\n')
 print(output_details)
 
 #test with tflite model
+i = 0
 true_conut = 0 
 all_invoke_time = 0 
 for idx, ecg_sample in enumerate(input_data, start=-1):
@@ -59,7 +60,8 @@ for idx, ecg_sample in enumerate(input_data, start=-1):
     # time
     all_invoke_time = all_invoke_time + invoke_time
     # num
-acc = true_conut/(idx+1)
+    i += 1
+acc = true_conut/i
 print (f'acc:{acc}')
 average_time = round(all_invoke_time/i, 5)
 print (f'average time:{average_time}s')
