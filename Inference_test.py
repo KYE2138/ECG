@@ -16,7 +16,7 @@ print(input_data.shape)
 input_data = np.float32(input_data)
 
 # load tflite model to interpreter
-m#odel_path = '2022_05_04_16_10_04.tflite'
+#odel_path = '2022_05_04_16_10_04.tflite'
 model_path = 'backup_model_best.tflite'
 interpreter = Interpreter(model_path)
 interpreter.allocate_tensors()  # Needed before execution!
