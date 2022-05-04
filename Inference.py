@@ -15,11 +15,23 @@ input_data = test_x[r:r+1]
 #print(input_data.shape)
 # np float64 to float32
 input_data = np.float32(input_data)
+
 # normolize to -1 , 1
-pos_max = max(input_data)
-neg_max = abs(min(input_data))
-#print (max(pos_max,neg_max))
-input_data = input_data/max(pos_max,neg_max)
+#signal (4096, lead_num)
+signal_T = input_data.T
+#print (signal_T.shape)
+#signal_T (lead_num, 4096)
+for signal_T_idx, signal_T_signal in enumerate (signal_T):
+    # signal_T_signal (4096)
+    #print (signal_T_signal.shape)
+    pos_max = max(signal_T_signal)
+    neg_max = abs(min(signal_T_signal))
+    if max(pos_max, neg_max)==0:
+        print (idx,signal_T_idx)
+    #print (max(pos_max, neg_max))
+    signal_T_signal = signal_T_signal/max(pos_max, neg_max)
+    signal_T[signal_T_idx] = signal_T_signal
+input_data = signal_T.T
 
 
 
