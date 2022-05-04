@@ -41,22 +41,23 @@ for idx, ecg_sample in enumerate(input_data, start=-1):
     finish_invoke_time = time.time()
     output_data = interpreter.get_tensor(output_details[0]['index'])
     output_data = output_data[0]
-    invoke_time = round(finish_invoke_time - start_invoke_time, 2)
+    invoke_time = round(finish_invoke_time - start_invoke_time, 5)
     #print (f'output data:{output_data}')
     # tf.keras.metrics.binary_accuracy(    y_true, y_pred, threshold=0.5)
     threshold = 0.5
     prediction = output_data
     prediction[prediction>threshold] = 1
     prediction[prediction<=threshold] = 0
-    print (f'prediction:{prediction}')
-    print (f'real label:{label}')
-    print (f'invoke time:{invoke_time}s')
+
     # acc
     if np.array_equal(prediction, label, equal_nan=False):
         true_conut += 1 
         #print ('True')
     else:
         print ('False')
+        print (f'prediction:{prediction}')
+        print (f'real label:{label}')
+        print (f'invoke time:{invoke_time}s')
     # time
     all_invoke_time = all_invoke_time + invoke_time
     # num
