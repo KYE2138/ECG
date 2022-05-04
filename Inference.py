@@ -41,7 +41,6 @@ prediction = output_data
 prediction[prediction>threshold] = 1
 prediction[prediction<=threshold] = 0
 print (f'prediction:{prediction}')
-print (f'label:{label}')
-print (f'invoke time:{invoke_time}s')
 print (f'real label:{test_y[r:r+1]}')
+print (f'invoke time:{invoke_time}s')
 
