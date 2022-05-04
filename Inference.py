@@ -7,12 +7,12 @@ from tflite_runtime.interpreter import Interpreter
 # load input data
 test_x = np.load('test_lead2_x.npy')
 test_y = np.load('test_y.npy')
-print (f'test_x shape:{test_x.shape}')
-print (f'test_y shape:{test_y.shape}')
+#print (f'test_x shape:{test_x.shape}')
+#print (f'test_y shape:{test_y.shape}')
 r = random.randrange(test_x.shape[0])
 # (1,4096,1)
 input_data = test_x[r:r+1]
-print(input_data.shape)
+#print(input_data.shape)
 # np float64 to float32
 input_data = np.float32(input_data)
 
@@ -23,8 +23,8 @@ interpreter = Interpreter(model_path)
 interpreter.allocate_tensors()  # Needed before execution!
 input_details = interpreter.get_input_details()  # Model has single input.
 output_details = interpreter.get_output_details()  # Model has single output.
-print(input_details,'\n')
-print(output_details)
+#print(input_details,'\n')
+#print(output_details)
 
 # set input data
 interpreter.set_tensor(input_details[0]['index'], input_data)
