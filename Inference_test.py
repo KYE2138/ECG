@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from tflite_runtime.interpreter import Interpreter
 
 # load input data
-test_x = np.load('test_lead2_x.npy')
+test_x = np.load('test_lead123_x.npy')
 test_y = np.load('test_y.npy')
 print (f'test_x shape:{test_x.shape}')
 print (f'test_y shape:{test_y.shape}')
