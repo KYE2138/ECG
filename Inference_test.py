@@ -22,7 +22,7 @@ input_data = np.float32(input_data)
 
 # load tflite model to interpreter
 #model_path = '2022_05_04_16_10_04.tflite'
-model_path = 'Arch_2022_05_05_03_03_23.tflite'
+model_path = 'Arch_2022_05_05_03_27_58.tflite'
 interpreter = Interpreter(model_path)
 interpreter.allocate_tensors()  # Needed before execution!
 input_details = interpreter.get_input_details()  # Model has single input.
