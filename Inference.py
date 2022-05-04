@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from tflite_runtime.interpreter import Interpreter
 
 # load input data
-test_x = np.load('test_x.npy')
+test_x = np.load('test_lead2_x.npy')
 test_y = np.load('test_y.npy')
 print (f'test_x shape:{test_x.shape}')
 print (f'test_y shape:{test_y.shape}')
@@ -17,7 +17,8 @@ print(input_data.shape)
 input_data = np.float32(input_data)
 
 # load tflite model to interpreter
-model_path = '2022_05_04_16_10_04.tflite'
+#model_path = '2022_05_04_16_10_04.tflite'
+model_path = 'backup_model_best.tflite'
 interpreter = Interpreter(model_path)
 interpreter.allocate_tensors()  # Needed before execution!
 input_details = interpreter.get_input_details()  # Model has single input.
