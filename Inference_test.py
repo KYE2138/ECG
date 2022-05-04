@@ -4,13 +4,13 @@ import numpy as np
 from tflite_runtime.interpreter import Interpreter
 
 # load input data
-test_x = np.load('test_x.npy')
-test_y = np.load('test_y.npy')
+test_x = np.load('test_lead1_x.npy')
+test_y = np.load('test_lead1_y.npy')
 print (f'test_x shape:{test_x.shape}')
 print (f'test_y shape:{test_y.shape}')
 
 # (n,4096,1)
-input_data = test_x
+input_data = test_x[,]
 print(input_data.shape)
 # np float64 to float32
 input_data = np.float32(input_data)
@@ -54,7 +54,7 @@ for idx, ecg_sample in enumerate(input_data, start=-1):
         true_conut += 1 
         #print ('True')
     else:
-        print ('False')
+        print (f'id:{idx} is False')
         print (f'prediction:{prediction}')
         print (f'real label:{label}')
         print (f'invoke time:{invoke_time}s')
