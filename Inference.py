@@ -1,6 +1,7 @@
 import time
 import random
 import numpy as np
+import matplotlib.pyplot as plt
 from tflite_runtime.interpreter import Interpreter
 
 # load input data
@@ -44,3 +45,6 @@ print (f'prediction:{prediction}')
 print (f'real label:{test_y[r:r+1][0]}')
 print (f'invoke time:{invoke_time}s')
 
+plt_x = np.reshape(input_data),(4096,)
+plt.plot(plt_x)
+plt.show()
