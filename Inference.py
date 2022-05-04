@@ -6,7 +6,8 @@ from tflite_runtime.interpreter import Interpreter
 # load input data
 test_x = np.fromfile('test_x.dat', dtype=int)
 test_y = np.fromfile('test_x.dat', dtype=int)
-#print (f'input data shape:{test_x.shape}')
+print (f'test_x shape:{test_x.shape}')
+print (f'test_y shape:{test_y.shape}')
 r = random.randrange(test_x.shape[0])
 # (4096,1)
 input_data = test_x[r:r+1]
