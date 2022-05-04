@@ -59,8 +59,7 @@ for idx, ecg_sample in enumerate(input_data, start=-1):
     # time
     all_invoke_time = all_invoke_time + invoke_time
     # num
-    i += 1
-acc = true_conut/i
+acc = true_conut/(idx+1)
 print (f'acc:{acc}')
 average_time = round(all_invoke_time/i, 5)
 print (f'average time:{average_time}s')
