@@ -1,0 +1,45 @@
+import time
+import random
+import numpy as np
+from tflite_runtime.interpreter import Interpreter
+
+# load input data
+test_x = np.fromfile('test_x.dat', dtype=int)
+test_y = np.fromfile('test_x.dat', dtype=int)
+#print (f'input data shape:{test_x.shape}')
+r = randrange(len(test_x.shape[0]))
+# (4096,1)
+input_data = test_x[r:r+1]
+# (1,4096,1)
+input_data = np.reshape(np.float32(input_data),(1,input_data.shape[0],input_data.shape[1]))
+
+# load tflite model to interpreter
+model_path = '.tflite'
+interpreter = Interpreter(model_path)
+interpreter.allocate_tensors()  # Needed before execution!
+input_details = interpreter.get_input_details()  # Model has single input.
+output_details = interpreter.get_output_details()  # Model has single output.
+print(input_details,'\n')
+print(output_details)
+
+# set input data
+interpreter.set_tensor(input_details[0]['index'], input_data)
+# invoke
+start_invoke_time = time.time()
+interpreter.invoke()
+finish_invoke_time = time.time()
+# get output
+output_data = interpreter.get_tensor(output_details[0]['index'])
+output_data = output_data[0]
+invoke_time = round(finish_invoke_time - start_invoke_time, 2)
+print (f'output data:{output_data}')
+# tf.keras.metrics.binary_accuracy(    y_true, y_pred, threshold=0.5)
+threshold = 0.5
+prediction = output_data
+prediction[prediction>threshold] = 1
+prediction[prediction<=threshold] = 0
+print (f'prediction:{prediction}')
+print (f'label:{label}')
+print (f'invoke time:{invoke_time}s')
+print (f'real label:{test_y[r:r+1]}')
+
