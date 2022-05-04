@@ -12,6 +12,8 @@ r = random.randrange(test_x.shape[0])
 # (1,4096,1)
 input_data = test_x[r:r+1]
 print(input_data.shape)
+# np float64 to float32
+input_data = np.float32(input_data)
 
 # load tflite model to interpreter
 model_path = '2022_05_04_16_10_04.tflite'
