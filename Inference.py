@@ -15,6 +15,13 @@ input_data = test_x[r:r+1]
 #print(input_data.shape)
 # np float64 to float32
 input_data = np.float32(input_data)
+# normolize to -1 , 1
+pos_max = max(input_data)
+neg_max = abs(min(input_data))
+#print (max(pos_max,neg_max))
+input_data = input_data/max(pos_max,neg_max)
+
+
 
 # load tflite model to interpreter
 #model_path = '2022_05_04_16_10_04.tflite'
