@@ -10,7 +10,7 @@ print (f'test_x shape:{test_x.shape}')
 print (f'test_y shape:{test_y.shape}')
 
 # (n,4096,1)
-input_data = test_x[0:63]
+input_data = test_x[:]
 print(input_data.shape)
 # np float64 to float32
 input_data = np.float32(input_data)
