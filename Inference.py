@@ -122,6 +122,7 @@ def draw_record():
 
 def draw_t_record():
     f_plot.clear()
+    time.sleep(11)
     ecg_single = t_data()
     x = np.arange(4096)
     y = np.reshape(ecg_single,(4096,))
