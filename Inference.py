@@ -18,7 +18,7 @@ import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
 ecg_single = np.zeros_like((4096,1))
-pred_result = []
+result = []
 
 def ECG_single(freq):
     i2c = busio.I2C(board.SCL, board.SDA)
@@ -62,11 +62,28 @@ def t_data():
     input_data = test_x[r:r+1]
     #print(input_data.shape)
     # np float64 to float32
-    input_data = np.float32(input_data)
+    ecgs_signals = np.float32(input_data)
     
-    return input_data
+    # normolize to -1 , 1
+    #ecgs_signals (4096, lead_num)
+    signal_T = ecgs_signals.T
+    #print (signal_T.shape)
+    #signal_T (lead_num, 4096)
+    for signal_T_idx, signal_T_signal in enumerate (signal_T):
+        # signal_T_signal (4096)
+        #print (signal_T_signal.shape)
+        pos_max = max(signal_T_signal)
+        neg_max = abs(min(signal_T_signal))
+        if max(pos_max, neg_max)==0:
+            print (idx,signal_T_idx)
+        #print (max(pos_max, neg_max))
+        signal_T_signal = signal_T_signal/max(pos_max, neg_max)
+        signal_T[signal_T_idx] = signal_T_signal
+    ecgs_signals = signal_T.T
 
-def inference(input_data, model_path):
+    return ecgs_signals
+
+def inference(input_data):
     input_data = np.reshape(input_data,(4096,1))
     # normolize to -1 , 1
     #signal (4096, lead_num)
@@ -88,7 +105,7 @@ def inference(input_data, model_path):
     #input_data = np.reshape(input_data,(4096,1))
     # load tflite model to interpreter
     #model_path = '2022_05_04_16_10_04.tflite'
-    #model_path = 'Arch_2022_05_05_03_27_58.tflite'
+    model_path = 'Arch_2022_05_05_03_27_58.tflite'
     interpreter = Interpreter(model_path)
     interpreter.allocate_tensors()  # Needed before execution!
     input_details = interpreter.get_input_details()  # Model has single input.
@@ -134,6 +151,7 @@ f_plot = f.add_subplot(111)
 
 def draw_record():
     f_plot.clear()
+    global ecg_single
     ecg_single = ECG_single(400)
     x = np.arange(4096)
     y = np.reshape(ecg_single,(4096,))
@@ -144,21 +162,25 @@ def draw_record():
 def draw_t_record():
     f_plot.clear()
     time.sleep(11)
+    global ecg_single
     ecg_single = t_data()
     x = np.arange(4096)
     y = np.reshape(ecg_single,(4096,))
     f_plot.plot(x, y)
     canvs.draw()
+
     return ecg_single
 
-def inference_record(ecg_single, model_path):
-    result = inference(ecg_single, model_path)
+def inference_record():
+    global ecg_single
+    global result
+    result = inference(ecg_single)
     return result
 
 canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
-Button(root, width=20, command=lambda:ecg_single==draw_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
-Button(root, width=20, command=lambda:pred_result==inference_record(ecg_single,'Arch_2022_05_05_03_27_58.tflite'), text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=draw_record, text='Start record').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=inference_record, text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
 
 Label(root, font=("Times", 20, "italic"), text="", fg="black").pack(padx=10,pady=10,ipady=30)
 
