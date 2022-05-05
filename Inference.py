@@ -85,6 +85,7 @@ def t_data():
 
 def inference(input_data):
     input_data = np.reshape(input_data,(4096,1))
+    
     # normolize to -1 , 1
     #signal (4096, lead_num)
     signal_T = input_data.T
@@ -102,7 +103,7 @@ def inference(input_data):
         signal_T[signal_T_idx] = signal_T_signal
     input_data = signal_T.T
     
-    #input_data = np.reshape(input_data,(4096,1))
+    input_data = np.float32(input_data)
     # load tflite model to interpreter
     #model_path = '2022_05_04_16_10_04.tflite'
     model_path = 'Arch_2022_05_05_03_27_58.tflite'
