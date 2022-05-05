@@ -17,6 +17,7 @@ import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
+
 def ECG_single(freq):
     i2c = busio.I2C(board.SCL, board.SDA)
     ads = ADS.ADS1115(i2c)
@@ -130,8 +131,8 @@ def inference_record(ecg_single, model_path):
 
 canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
-Button(root, width=20, command=lambda:ecg_single=draw_t_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
-Button(root, width=20, command=lambda:pred_result=inference_record(ecg_single,'Arch_2022_05_05_03_27_58.tflite'), text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=lambda:ecg_single==draw_t_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=lambda:pred_result==inference_record(ecg_single,'Arch_2022_05_05_03_27_58.tflite'), text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
 
 Label(root, font=("Times", 20, "italic"), text="", fg="black").pack(padx=10,pady=10,ipady=30)
 
