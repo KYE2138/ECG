@@ -184,12 +184,14 @@ def inference_record():
     r1_list = ['1dAVb', 'RBBB', 'LBBB', 'SB', 'AF', 'ST']
     global r1_label
     global r2_label
-    if sum (result[0]):
-        r1_label.configure(text=f"Dectect abnormal ECG:", fg="red" ) 
-        r2_label.configure(text=f"{r1_list[np.argmax(result[0])]}", fg="red" ) 
-    else:
+    print (sum (result[0]))
+    print (type(result[0]))
+    if sum (result[0])==0:
         r1_label.configure(text=f"Normal ECG", fg="green" )
         r2_label.configure(text=f"", fg="green" ) 
+    else:
+        r1_label.configure(text=f"Dectect abnormal ECG:", fg="red" ) 
+        r2_label.configure(text=f"{r1_list[np.argmax(result[0])]}", fg="red" ) 
     #r2_label.configure(text=f"{result[1]}") 
     return result
 
