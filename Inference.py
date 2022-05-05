@@ -187,7 +187,7 @@ def inference_record():
     if sum (result[0]):
         r1_label.configure(text=f"Dectect abnormal ECG:/n {r1_list[np.argmax(result[0])]}", fg="red" ) 
     else:
-        r1_label.configure(text=f"Normal ECG{result[0][np.argmax(result[0])]}", fg="green" )
+        r1_label.configure(text=f"Normal ECG", fg="green" )
     #r2_label.configure(text=f"{result[1]}") 
     return result
 
@@ -200,9 +200,9 @@ Start_record.pack(padx=10,pady=10,ipady=30)
 Automatic_diagnosis = Button(root, width=20, command=inference_record, text='Automatic diagnosis')
 Automatic_diagnosis.pack(padx=10,pady=10,ipady=30)
 
-r1_label = Label(root, font=("Times", 10, "italic"), text="", fg="black")
+r1_label = Label(root, font=("Times", 15, "italic"), text="", fg="black")
 r1_label.pack(padx=10,pady=10,ipady=30)
-r2_label = Label(root, font=("Times", 10, "italic"), text="", fg="black")
+r2_label = Label(root, font=("Times", 15, "italic"), text="", fg="black")
 r2_label.pack(padx=10,pady=10,ipady=30)
 
 root.mainloop()
