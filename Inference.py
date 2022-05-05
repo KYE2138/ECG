@@ -60,7 +60,8 @@ def t_data():
     r = random.randrange(test_x.shape[0])
     # (1,4096,1)
     print (r)
-    r = 787
+    # LBBB
+    # r = 787 
     input_data = test_x[r:r+1]
     #print(input_data.shape)
     # np float64 to float32
@@ -179,10 +180,15 @@ def inference_record():
     global ecg_single
     global result
     result = inference(ecg_single)
+    #`1dAVb, RBBB, LBBB, SB, AF, ST`
+    r1_list = ['1dAVb', 'RBBB', 'LBBB', 'SB', 'AF', 'ST']
     global r1_label
     global r2_label
-    r1_label.configure(text=f"{result[0]}") 
-    r2_label.configure(text=f"{result[1]}") 
+    if sum (result[0]):
+        r1_label.configure(text=f"Dectect abnormal ECG: {result[0][np.argmax(result[0])]}", fg="red" ) 
+    else:
+        r1_label.configure(text=f"Normal ECG{result[0][np.argmax(result[0])]}", fg="green" )
+    #r2_label.configure(text=f"{result[1]}") 
     return result
 
 canvs = FigureCanvasTkAgg(f, root)
