@@ -30,7 +30,7 @@ def ECG_single(freq):
         ecgs_signals.append(chan.voltage)
         idx.append(i)
         time.sleep(1.0/freq)
-    ecgs_signals = np.asarray(ecgs_signals)
+    ecgs_signals = np.reshape(ecgs_signals,(4096,1))
     # normolize to -1 , 1
     #signal (4096, lead_num)
     signal_T = ecgs_signals.T
