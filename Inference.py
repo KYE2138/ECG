@@ -63,7 +63,8 @@ def t_data():
     # LBBB
     #r = 787
     # narmal
-    r = 770 
+    #r = 770 
+    r = 699
     print (r)
     input_data = test_x[r:r+1]
     #print(input_data.shape)
