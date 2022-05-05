@@ -67,7 +67,7 @@ def t_data():
     return input_data
 
 def inference(input_data, model_path):
-    print (type(input_data))
+    input_data = np.reshape(input_data,(4096,1))
     # normolize to -1 , 1
     #signal (4096, lead_num)
     signal_T = input_data.T
