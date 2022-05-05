@@ -113,19 +113,21 @@ f_plot = f.add_subplot(111)
 
 def draw_record():
     f_plot.clear()
-    x = ECG_single(400)
+    ecg_single = ECG_single(400)
+    x = np.reshape(ecg_single,(4096,))
     y = range(4096)//400
     f_plot.plot(x, y)
     canvs.draw()
-    return x
+    return ecg_single
 
 def draw_t_record():
     f_plot.clear()
-    x = t_data()
+    ecg_single = t_data()
+    x = np.reshape(ecg_single,(4096,))
     y = range(4096)//400
     f_plot.plot(x, y)
     canvs.draw()
-    return x
+    return ecg_single
 
 def inference_record(ecg_single, model_path):
     result = inference(ecg_single, model_path)
