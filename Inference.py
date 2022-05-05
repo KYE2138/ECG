@@ -114,8 +114,8 @@ f_plot = f.add_subplot(111)
 def draw_record():
     f_plot.clear()
     ecg_single = ECG_single(400)
-    x = np.reshape(ecg_single,(4096,))
-    y = np.arange(4096)
+    x = np.arange(4096)
+    y = np.reshape(ecg_single,(4096,))
     f_plot.plot(x, y)
     canvs.draw()
     return ecg_single
@@ -123,8 +123,8 @@ def draw_record():
 def draw_t_record():
     f_plot.clear()
     ecg_single = t_data()
-    x = np.reshape(ecg_single,(4096,))
-    y = np.arange(4096)
+    x = np.arange(4096)
+    y = np.reshape(ecg_single,(4096,))
     f_plot.plot(x, y)
     canvs.draw()
     return ecg_single
