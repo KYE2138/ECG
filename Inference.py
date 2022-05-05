@@ -61,9 +61,10 @@ def t_data():
     # (1,4096,1)
     print (r)
     # LBBB
-    # r = 787
+    #r = 787
     # narmal
-    # r = 770 
+    r = 770 
+
     input_data = test_x[r:r+1]
     #print(input_data.shape)
     # np float64 to float32
@@ -189,7 +190,7 @@ def inference_record():
     print (sum (result[0]))
     print (type(result[0]))
     if sum (result[0])==0:
-        r1_label.configure(text=f"Normal ECG", fg="green" )
+        r1_label.configure(text=f"Normal", fg="green" )
         r2_label.configure(text=f"", fg="green" ) 
     else:
         r1_label.configure(text=f"Dectect Abnormal", fg="red" ) 
