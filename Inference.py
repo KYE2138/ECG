@@ -113,7 +113,7 @@ f_plot = f.add_subplot(111)
 
 def draw_record():
     f_plot.clear()
-    x = inference(ECG_single(400), )
+    x = ECG_single(400)
     y = range(4096)//400
     f_plot.plot(x, y)
     canvs.draw()
@@ -121,7 +121,7 @@ def draw_record():
 
 def draw_t_record():
     f_plot.clear()
-    x = inference(t_data(), )
+    x = t_data()
     y = range(4096)//400
     f_plot.plot(x, y)
     canvs.draw()
