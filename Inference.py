@@ -95,6 +95,7 @@ def inference(input_data, model_path):
     #plt_x = np.reshape(input_data,(4096,))
     #plt.plot(plt_x)
     #plt.show()
+    return [prediction, invoke_time]
 
 #inference(ECG_single(400), )
 #inference(t_data(), )
@@ -131,7 +132,6 @@ canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
 Button(root, width=20, command=lambda: ecg_single=draw_t_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
 Button(root, width=20, command=lambda: pred_result=inference_record(ecg_single,'Arch_2022_05_05_03_27_58.tflite'), text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
-#Button(root, width=20, command=draw_picture3, text='pic3').pack(padx=10,pady=10,ipady=30)
 
 Label(root, font=("Times", 20, "italic"), text="", fg="black").pack(padx=10,pady=10,ipady=30)
 
