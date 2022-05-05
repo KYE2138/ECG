@@ -60,6 +60,7 @@ def t_data():
     r = random.randrange(test_x.shape[0])
     # (1,4096,1)
     print (r)
+    r = 787
     input_data = test_x[r:r+1]
     #print(input_data.shape)
     # np float64 to float32
