@@ -31,8 +31,9 @@ def ECG_single(freq):
         idx.append(i)
         time.sleep(1.0/freq)
     ecgs_signals = np.reshape(ecgs_signals,(4096,1))
+    
     # normolize to -1 , 1
-    #signal (4096, lead_num)
+    #ecgs_signals (4096, lead_num)
     signal_T = ecgs_signals.T
     #print (signal_T.shape)
     #signal_T (lead_num, 4096)
@@ -47,6 +48,7 @@ def ECG_single(freq):
         signal_T_signal = signal_T_signal/max(pos_max, neg_max)
         signal_T[signal_T_idx] = signal_T_signal
     ecgs_signals = signal_T.T
+    print (ecgs_signals.type)
     return ecgs_signals
 
 def t_data():
@@ -65,7 +67,7 @@ def t_data():
     return input_data
 
 def inference(input_data, model_path):
-
+    print (input_data.type)
     # normolize to -1 , 1
     #signal (4096, lead_num)
     signal_T = input_data.T
