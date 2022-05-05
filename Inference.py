@@ -17,7 +17,7 @@ import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
 
-ecg_single = []
+ecg_single = np.zeros_like((4096,1))
 pred_result = []
 
 def ECG_single(freq):
