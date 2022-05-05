@@ -48,7 +48,7 @@ def ECG_single(freq):
         signal_T_signal = signal_T_signal/max(pos_max, neg_max)
         signal_T[signal_T_idx] = signal_T_signal
     ecgs_signals = signal_T.T
-    print (ecgs_signals.type)
+    print (type(ecgs_signals))
     return ecgs_signals
 
 def t_data():
@@ -67,7 +67,7 @@ def t_data():
     return input_data
 
 def inference(input_data, model_path):
-    print (input_data.type)
+    print (type(input_data))
     # normolize to -1 , 1
     #signal (4096, lead_num)
     signal_T = input_data.T
