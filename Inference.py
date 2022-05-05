@@ -179,8 +179,10 @@ def inference_record():
     global ecg_single
     global result
     result = inference(ecg_single)
-    global r_label
-    r_label.configure(text="Text Updated") 
+    global r1_label
+    global r2_label
+    r1_label.configure(text=f"{result[0]}") 
+    r2_label.configure(text=f"{result[1]}") 
     return result
 
 canvs = FigureCanvasTkAgg(f, root)
@@ -192,7 +194,9 @@ Start_record.pack(padx=10,pady=10,ipady=30)
 Automatic_diagnosis = Button(root, width=20, command=inference_record, text='Automatic diagnosis')
 Automatic_diagnosis.pack(padx=10,pady=10,ipady=30)
 
-r_label = Label(root, font=("Times", 20, "italic"), text="", fg="black")
-r_label.pack(padx=10,pady=10,ipady=30)
+r1_label = Label(root, font=("Times", 20, "italic"), text="", fg="black")
+r1_label.pack(padx=10,pady=10,ipady=30)
+r2_label = Label(root, font=("Times", 20, "italic"), text="", fg="black")
+r2_label.pack(padx=10,pady=10,ipady=30)
 
 root.mainloop()
