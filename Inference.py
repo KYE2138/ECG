@@ -185,9 +185,11 @@ def inference_record():
     global r1_label
     global r2_label
     if sum (result[0]):
-        r1_label.configure(text=f"Dectect abnormal ECG:/n {r1_list[np.argmax(result[0])]}", fg="red" ) 
+        r1_label.configure(text=f"Dectect abnormal ECG:", fg="red" ) 
+        r2_label.configure(text=f"{r1_list[np.argmax(result[0])]}", fg="red" ) 
     else:
         r1_label.configure(text=f"Normal ECG", fg="green" )
+        r2_label.configure(text=f"", fg="green" ) 
     #r2_label.configure(text=f"{result[1]}") 
     return result
 
