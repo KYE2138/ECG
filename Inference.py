@@ -61,7 +61,9 @@ def t_data():
     # (1,4096,1)
     print (r)
     # LBBB
-    # r = 787 
+    # r = 787
+    # narmal
+    # r = 770 
     input_data = test_x[r:r+1]
     #print(input_data.shape)
     # np float64 to float32
@@ -204,7 +206,7 @@ Start_record.pack(padx=10,pady=10,ipady=30)
 Automatic_diagnosis = Button(root, width=20, command=inference_record, text='Automatic diagnosis')
 Automatic_diagnosis.pack(padx=10,pady=10,ipady=30)
 
-r1_label = Label(root, font=("Times", 15, "italic"), text="", fg="black")
+r1_label = Label(root, font=("Times", 10, "italic"), text="", fg="black")
 r1_label.pack(padx=10,pady=10,ipady=30)
 r2_label = Label(root, font=("Times", 15, "italic"), text="", fg="black")
 r2_label.pack(padx=10,pady=10,ipady=30)
