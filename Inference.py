@@ -30,6 +30,23 @@ def ECG_single(freq):
         ecgs_signals.append(chan.voltage)
         idx.append(i)
         time.sleep(1.0/freq)
+    ecgs_signals = np.float32(ecgs_signals)
+    # normolize to -1 , 1
+    #signal (4096, lead_num)
+    signal_T = ecgs_signals.T
+    #print (signal_T.shape)
+    #signal_T (lead_num, 4096)
+    for signal_T_idx, signal_T_signal in enumerate (signal_T):
+        # signal_T_signal (4096)
+        #print (signal_T_signal.shape)
+        pos_max = max(signal_T_signal)
+        neg_max = abs(min(signal_T_signal))
+        if max(pos_max, neg_max)==0:
+            print (idx,signal_T_idx)
+        #print (max(pos_max, neg_max))
+        signal_T_signal = signal_T_signal/max(pos_max, neg_max)
+        signal_T[signal_T_idx] = signal_T_signal
+    ecgs_signals = signal_T.T
     return ecgs_signals
 
 def t_data():
@@ -44,6 +61,7 @@ def t_data():
     #print(input_data.shape)
     # np float64 to float32
     input_data = np.float32(input_data)
+    
     return input_data
 
 def inference(input_data, model_path):
@@ -64,7 +82,8 @@ def inference(input_data, model_path):
         signal_T_signal = signal_T_signal/max(pos_max, neg_max)
         signal_T[signal_T_idx] = signal_T_signal
     input_data = signal_T.T
-
+    
+    #input_data = np.reshape(input_data,(4096,1))
     # load tflite model to interpreter
     #model_path = '2022_05_04_16_10_04.tflite'
     #model_path = 'Arch_2022_05_05_03_27_58.tflite'
@@ -136,7 +155,7 @@ def inference_record(ecg_single, model_path):
 
 canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
-Button(root, width=20, command=lambda:ecg_single==draw_t_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=lambda:ecg_single==draw_record(), text='Start record').pack(padx=10,pady=10,ipady=30)
 Button(root, width=20, command=lambda:pred_result==inference_record(ecg_single,'Arch_2022_05_05_03_27_58.tflite'), text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
 
 Label(root, font=("Times", 20, "italic"), text="", fg="black").pack(padx=10,pady=10,ipady=30)
