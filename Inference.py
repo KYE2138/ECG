@@ -114,6 +114,7 @@ def inference(input_data):
     #print(input_details,'\n')
     #print(output_details)
 
+    input_data = np.reshape(input_data,(1,4096,1))
     # set input data
     interpreter.set_tensor(input_details[0]['index'], input_data)
     # invoke
