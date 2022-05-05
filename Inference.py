@@ -182,7 +182,7 @@ def inference_record():
 canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
 Button(root, width=20, command=draw_record, text='Start record').pack(padx=10,pady=10,ipady=30)
-Button(root, width=20, command=inference_record, text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
+Button(root, width=20, command=draw_t_record, text='Automatic diagnosis').pack(padx=10,pady=10,ipady=30)
 
 Label(root, font=("Times", 20, "italic"), text="", fg="black").pack(padx=10,pady=10,ipady=30)
 
