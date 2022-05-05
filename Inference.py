@@ -178,7 +178,7 @@ def inference_record():
     global ecg_single
     global result
     result = inference(ecg_single)
-    global 
+    global r_label
     r_label.configure(text="Text Updated") 
     return result
 
