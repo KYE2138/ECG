@@ -49,6 +49,9 @@ def ECG_single(freq):
         signal_T[signal_T_idx] = signal_T_signal
     ecgs_signals = signal_T.T
     print (type(ecgs_signals))
+    # save data
+    timestamp = "{:}".format(time.strftime('%Y_%m_%d_%H_%M_%S', time.localtime()))
+    np.save(f'ECG_single{timestamp}.npy', ecgs_signals)
     return ecgs_signals
 
 def t_data():
@@ -202,7 +205,7 @@ def inference_record():
 canvs = FigureCanvasTkAgg(f, root)
 canvs.get_tk_widget().pack(side=LEFT, fill=BOTH, expand=5)
 
-Start_record =Button(root, width=20, command=draw_t_record, text='Start record')
+Start_record =Button(root, width=20, command=draw_record, text='Start record')
 Start_record.pack(padx=10,pady=10,ipady=30)
 
 Automatic_diagnosis = Button(root, width=20, command=inference_record, text='Automatic diagnosis')
